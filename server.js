@@ -37,7 +37,7 @@ app.put(`/books`, async (req, res) => {
 });
 
 //Update the table so that all books published before 2010 have their in_stock status set to - False.
-app.put(`books`, async (req, res) => {
+app.put(`/books`, async (req, res) => {
     await db.none('UPDATE books SET in_stock = false WHERE publication_date < \'2010-01-01\'');
     res.send('updated books before 2010')
 });
@@ -51,3 +51,6 @@ app.get('/books/moreThan300Pages', async (req, res) => {
 app.listen(PORT, () => {
 console.log(`Server is running on port: ${PORT}.`);
  });
+
+
+ 
