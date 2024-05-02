@@ -12,17 +12,20 @@ app.put('/books/updatePrice', async (req, res) => {
     res.send('Prices updated by 10% for all books in the Fantasy genre.');
 });
 
+
 //Delete the book with the lowest price from the table.
 app.delete(`/books/:id`, async (req, res) => {
         await db.none('DELETE FROM books WHERE id = (SELECT id FROM books ORDER BY price ASC LIMIT 1)');
         res.send('Deleted book with the lowest price.');
 });
 
+
 //Show all books that are in_stock.
 app.get(`/books`, async (req,res) => {
     const inStockBooks = await db.many('SELECT * FROM books WHERE in_stock = true');
     res.json(inStockBooks);
 });
+
 
 //Show the average price of all books in the Mystery genre.
 app.get('/books/averagePriceMystery', async (req, res) => {
