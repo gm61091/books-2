@@ -39,11 +39,13 @@ app.put(`/books`, async (req, res) => {
     res.send('column added')
 });
 
+
 //Update the table so that all books published before 2010 have their in_stock status set to - False.
 app.put(`/books`, async (req, res) => {
     await db.none('UPDATE books SET in_stock = false WHERE publication_date < \'2010-01-01\'');
     res.send('updated books before 2010')
 });
+
 
 //Show the titles of books that have more than 300 pages.
 app.get('/books/moreThan300Pages', async (req, res) => {
@@ -51,9 +53,12 @@ app.get('/books/moreThan300Pages', async (req, res) => {
         res.json(booksMoreThan300Pages)
 });
 
+
 app.listen(PORT, () => {
 console.log(`Server is running on port: ${PORT}.`);
  });
+
+
 
 
  
